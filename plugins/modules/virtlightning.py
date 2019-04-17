@@ -91,7 +91,7 @@ def create(hv, configuration, distro, context, groups, vcpus, memory, name, root
 
 def main():
     argument_spec = dict(
-        distro=dict(type=str, required=True),
+        distro=dict(type=str),
         name=dict(type=str),
         state=dict(default='present'),
         root_password=dict(type=str),

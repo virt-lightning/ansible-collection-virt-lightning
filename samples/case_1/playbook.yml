@@ -1,0 +1,23 @@
+---
+- hosts: localhost
+  collections:
+    - virtlightning
+  tasks:
+    - name: Create the Debian 9 VM
+      virtlightning:
+        distro: debian-9
+        name: my_vm
+        state: present
+
+    - name: Refresh inventory to ensure new instaces exist in inventory
+      meta: refresh_inventory
+
+    - debug: var=hostvars.debian9
+    - name:
+      command: uname -a
+      delegate_to: my_vm
+
+    - name: Destroy the VM
+      virtlightning:
+        name: my_vm
+        state: absent
