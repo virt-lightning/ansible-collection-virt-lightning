@@ -5,7 +5,7 @@ from __future__ import (absolute_import, division, print_function)
 __metaclass__ = type
 
 DOCUMENTATION = '''
-    name: virt_lightning
+    name: virtlightning
     plugin_type: inventory
     version_added: '2.8'
     authors:
@@ -21,8 +21,8 @@ DOCUMENTATION = '''
 '''
 
 EXAMPLES = '''
-# virt_lightning.yml
-plugin: virt_lightning
+# virtlightning.yml
+plugin: virtlightning
 '''
 
 import libvirt
@@ -40,7 +40,7 @@ class InventoryModule(BaseInventoryPlugin, Constructable):
 
     NAME = 'virt_lightning'
 
-    def verify_file(self, path):
+    def verifyfile(self, path):
         """Return the possibly of a file being consumable by this plugin."""
         return (
             super(InventoryModule, self).verify_file(path) and
@@ -58,12 +58,9 @@ class InventoryModule(BaseInventoryPlugin, Constructable):
                     self.inventory.add_host(domain.name, group='all', port=22)
                     self.inventory.set_variable(domain.name, 'ansible_host', str(domain.ipv4.ip))
                     self.inventory.set_variable(domain.name, 'ansible_user', domain.username)
-                    import q
-                    q(domain.groups)
+                    self.inventory.set_variable(domain.name, 'ansible_python_interpreter', '/usr/bin/python')
                     for group in domain.groups:
                         if group not in self.inventory.groups:
-                            import q
-                            q(group)
                             self.inventory.add_group(group)
                         self.inventory.groups[group].add_host(self.inventory.hosts[host_name])
 

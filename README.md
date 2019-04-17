@@ -36,6 +36,6 @@ virtual machine:
 ## Installation
 
 ```shell
-mkdir -p ~/.ansible/collections/ansible_collections
-git clone http://github.com/virt-lightning/ansible-collection-virt-lightning.git ~/.ansible/collections/ansible_collections/virtlightning
+mkdir -p ~/.ansible/collections/ansible_collections/virtlightning
+git clone http://github.com/virt-lightning/ansible-collection-virt-lightning.git ~/.ansible/collections/ansible_collections/virtlightning/virtlightning
 ```
