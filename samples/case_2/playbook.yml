@@ -1,8 +1,10 @@
 ---
 - hosts: localhost
+  collections:
+    - virtlightning.virtlightning
   tasks:
     - name: Create the Debian 9 VM
-      virtlightning.virtlightning.virtlightning:
+      virtlightning:
         distro: debian-9
         name: my_vm
         state: present
@@ -16,6 +18,6 @@
       delegate_to: my_vm
 
     - name: Destroy the VM
-      virtlightning.virtlightning.virtlightning:
+      virtlightning:
         name: my_vm
         state: absent
