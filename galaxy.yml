@@ -1,0 +1,11 @@
+namespace: "virt-lightning"
+name: "virt-lightning"
+authours:
+  - "Gonéri Le Bouder"
+version: "0.1.0"
+license: "Apache-2.0"
+tags:
+  - cloud
+  - libvirt
+  - kvm
+  - vm
