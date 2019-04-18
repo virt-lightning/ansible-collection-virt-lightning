@@ -33,9 +33,21 @@ virtual machine:
         state: absent
 ```
 
+## Requirements
+
+- Libvirt
+- Linux
+
+VirtLightning should already be installed in your virtualenv, the following command
+should not raise any error: `python -m virt_lightning.virt_lightning`
+
+If it's not the case, just follow the installation procedure here: https://virt-lightning.github.io/virt-lightning/
+
 ## Installation
 
 ```shell
 mkdir -p ~/.ansible/collections/ansible_collections/virtlightning
 git clone http://github.com/virt-lightning/ansible-collection-virt-lightning.git ~/.ansible/collections/ansible_collections/virtlightning/virtlightning
 ```
+
+You can test your installation with the two samples playbooks.
