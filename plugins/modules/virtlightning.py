@@ -95,7 +95,7 @@ def main():
         name=dict(type=str),
         state=dict(default='present'),
         root_password=dict(type=str),
-        groups=dict(default=[]),
+        groups=dict(default=[], type=list),
         root_disk_size=dict(type=int, default=32)
     )
     configuration = virt_lightning.configuration.Configuration()
