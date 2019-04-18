@@ -62,7 +62,7 @@ class InventoryModule(BaseInventoryPlugin, Constructable):
                     for group in domain.groups:
                         if group not in self.inventory.groups:
                             self.inventory.add_group(group)
-                        self.inventory.groups[group].add_host(self.inventory.hosts[host_name])
+                        self.inventory.groups[group].add_host(self.inventory.hosts[domain.name])
 
         except Exception as e:
             raise AnsibleError('Something happened, this was original exception: %s' % to_native(e))
