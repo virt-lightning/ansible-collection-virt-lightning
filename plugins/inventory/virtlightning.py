@@ -55,6 +55,8 @@ class InventoryModule(BaseInventoryPlugin, Constructable):
             groups = {}
             for domain in hv.list_domains():
                 if domain.name not in self.inventory.hosts:
+                    if not domain.ipv4:
+                        continue
                     self.inventory.add_host(domain.name, group='all', port=22)
                     self.inventory.set_variable(domain.name, 'ansible_host', str(domain.ipv4.ip))
                     self.inventory.set_variable(domain.name, 'ansible_user', domain.username)
