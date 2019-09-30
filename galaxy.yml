@@ -1,11 +1,16 @@
-namespace: "virt-lightning"
-name: "virt-lightning"
-authours:
-  - "Gonéri Le Bouder"
-version: "0.1.0"
-license: "Apache-2.0"
+namespace: "virtlightning"
+name: "virtlightning"
+version: "1.0.0"
+readme: "README.md"
+authors:
+    - "Gonéri Le Bouder <goneri@lebouder.net>"
+dependencies:
+license:
+    - "Apache-2"
 tags:
   - cloud
   - libvirt
   - kvm
   - vm
+repository: "https://github.com/virt-lightning/ansible-collection-virt-lightning/"
+issues: "https://github.com/virt-lightning/ansible-collection-virt-lightning/issues"
