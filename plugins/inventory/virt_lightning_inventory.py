@@ -30,7 +30,7 @@ import libvirt
 import virt_lightning.configuration
 import virt_lightning.virt_lightning as vl
 
-from ansible.errors import AnsibleError, AnsibleParserError
+from ansible.errors import AnsibleError
 from ansible.module_utils._text import to_native
 from ansible.plugins.inventory import BaseInventoryPlugin, Constructable
 
@@ -52,7 +52,6 @@ class InventoryModule(BaseInventoryPlugin, Constructable):
             configuration = virt_lightning.configuration.Configuration()
             conn = libvirt.open(configuration.libvirt_uri)
             hv = vl.LibvirtHypervisor(conn)
-            groups = {}
             for domain in hv.list_domains():
                 if domain.name not in self.inventory.hosts:
                     if not domain.ipv4:
