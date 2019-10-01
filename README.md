@@ -46,8 +46,7 @@ If it's not the case, just follow the installation procedure here: https://virt-
 ## Installation
 
 ```shell
-mkdir -p ~/.ansible/collections/ansible_collections/virtlightning
-git clone http://github.com/virt-lightning/ansible-collection-virt-lightning.git ~/.ansible/collections/ansible_collections/virtlightning/virtlightning
+ansible-galaxy collection install -p ~/.ansible/collections virt_lightning.virt_lightning
 ```
 
 You can test your installation with the two samples playbooks.
