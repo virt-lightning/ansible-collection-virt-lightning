@@ -1,2 +1,2 @@
 #!/bin/bash
-ansible-playbook playbook.yml -i virtlightning.yaml
+ansible-playbook playbook.yml -i inventory.yaml
