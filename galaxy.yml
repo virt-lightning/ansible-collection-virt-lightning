@@ -1,5 +1,5 @@
-namespace: "virtlightning"
-name: "virtlightning"
+namespace: "virt_lightning"
+name: "virt_lightning"
 version: "1.0.1"
 readme: "README.md"
 authors:
