@@ -63,25 +63,33 @@ try:
 except ImportError:
     HAS_LIB = False
 
-def create(hv, configuration, distro, context, groups, vcpus, memory, name, root_disk_size):
+def create(hv, configuration, distro, context, name, root_disk_size, **kwargs):
+    user_config = {
+        "groups": kwargs.get("groups"),
+        "memory": kwargs.get("memory"),
+        "python_interpreter": kwargs.get("python_interpreter"),
+        "root_password": kwargs.get("root_password", configuration.root_password),
+        "ssh_key_file": kwargs.get("ssh_key_file", configuration.ssh_key_file),
+        "username": kwargs.get("username"),
+        "vcpus": kwargs.get("vcpus"),
+        "fqdn": kwargs.get("fqdn"),
+        "default_nic_mode": kwargs.get("default_nic_model"),
+    }
     domain = hv.create_domain(name=name, distro=distro)
+    hv.configure_domain(domain, user_config)
     domain.context = context
-    domain.groups = groups
-    domain.load_ssh_key_file(configuration.ssh_key_file)
-    domain.username = configuration.username
-    domain.root_password = configuration.root_password
-    domain.vcpus(vcpus)
-    domain.memory(memory)
     root_disk_path = hv.create_disk(
         name=name,
         backing_on=distro,
         size=root_disk_size,
     )
     domain.add_root_disk(root_disk_path)
-    domain.attachNetwork(configuration.network_name)
-    domain.ipv4 = hv.get_free_ipv4()
-    domain.add_swap_disk(hv.create_disk(name + "-swap", size=1))
-    hv.start(domain)
+    network = {
+        "network": configuration.network_name,
+        "ipv4": hv.get_free_ipv4(),
+        }
+    domain.attachNetwork(**network)
+    hv.start(domain, metadata_format={"provider": "opensack"})
     loop = asyncio.get_event_loop()
 
     async def deploy():
@@ -128,7 +136,9 @@ def main():
     elif state == 'present' and domain:
         module.exit_json(changed=False)
     else:
-        domain = create(hv, configuration, distro, context, groups, vcpus, memory, name, root_disk_size)
+        domain = create(hv, configuration, distro, context, name,
+                        root_disk_size, memory=memory, vcpus=vcpus,
+                        groups=groups)
         module.exit_json(
             changed=True,
             name=domain.name,
