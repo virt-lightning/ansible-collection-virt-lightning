@@ -102,8 +102,11 @@ def main():
         distro=dict(type=str),
         name=dict(type=str),
         state=dict(default='present'),
+        context=dict(type=str, default='default'),
         root_password=dict(type=str),
         groups=dict(default=[], type=list),
+        memory=dict(type=int, default=512),
+        vcpus=dict(type=int, default=1),
         root_disk_size=dict(type=int, default=32)
     )
     configuration = virt_lightning.configuration.Configuration()
@@ -112,13 +115,13 @@ def main():
         module.fail_json(msg='virt-lightning Python library is required for this module')
 
     state = module.params['state']
-    context='default'
+    context = module.params['context']
     distro = module.params['distro']
     groups = module.params['groups']
     root_password = module.params['root_password'] or configuration.root_password
     name = module.params.get('name') or re.sub(r"\W+", "", distro)
-    vcpus = 1
-    memory = 512
+    memory = module.params['memory']
+    vcpus = module.params['vcpus']
     root_disk_size = module.params['root_disk_size']
 
 
