@@ -59,7 +59,7 @@ class InventoryModule(BaseInventoryPlugin, Constructable):
                     self.inventory.add_host(domain.name, group='all', port=22)
                     self.inventory.set_variable(domain.name, 'ansible_host', str(domain.ipv4.ip))
                     self.inventory.set_variable(domain.name, 'ansible_user', domain.username)
-                    self.inventory.set_variable(domain.name, 'ansible_python_interpreter', '/usr/bin/python')
+                    self.inventory.set_variable(domain.name, 'ansible_python_interpreter', domain.python_interpreter)
                     for group in domain.groups:
                         if group not in self.inventory.groups:
                             self.inventory.add_group(group)
