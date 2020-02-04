@@ -1,21 +1,21 @@
 ---
 - hosts: localhost
   tasks:
-    - name: Create the Debian 9 VM
+    - name: Create the Debian 10 VM
       virt_lightning.virt_lightning.virt_lightning:
-        distro: debian-9
-        name: my_vm
+        distro: debian-10
+        name: myvm
         state: present
 
     - name: Refresh inventory to ensure new instaces exist in inventory
       meta: refresh_inventory
 
-    - debug: var=hostvars.debian9
+    - debug: var=hostvars.myvm
     - name:
       command: uname -a
-      delegate_to: my_vm
+      delegate_to: myvm
 
     - name: Destroy the VM
       virt_lightning.virt_lightning.virt_lightning:
-        name: my_vm
+        name: myvm
         state: absent
