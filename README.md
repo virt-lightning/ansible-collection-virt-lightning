@@ -15,7 +15,7 @@ virtual machine:
     - virt_lightning.virt_lightning
   tasks:
     - name: Create the Debian 10 VM
-      virt_lightning:
+      vm:
         distro: debian-10
         name: myvm
         state: present
@@ -29,13 +29,14 @@ virtual machine:
       delegate_to: myvm
 
     - name: Destroy the VM
-      virt_lightning:
+      vm:
         name: myvm
         state: absent
 ```
 
 ## Requirements
 
+- Virt-Lightning 2.0.0
 - Libvirt
 - Linux
 
