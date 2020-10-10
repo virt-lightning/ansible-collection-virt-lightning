@@ -16,7 +16,7 @@
 
 DOCUMENTATION = '''
 ---
-module: virt_lightning
+module: vm
 short_description: A Cloud-like interface on top of a local Libvirt
 description:
     - Foo
