@@ -88,7 +88,11 @@ def create(hv, configuration, distro, context, name, root_disk_size, **kwargs):
         "network": configuration.network_name,
         "ipv4": hv.get_free_ipv4(),
         }
-    domain.attachNetwork(**network)
+    # Virt-Lightning 2.0.0
+    if hasattr(domain, "attach_network"):
+        domain.attach_network(**network)
+    else:
+        domain.attachNetwork(**network)
     hv.start(domain, metadata_format={"provider": "opensack"})
     loop = asyncio.get_event_loop()
 
