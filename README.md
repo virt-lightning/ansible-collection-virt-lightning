@@ -15,12 +15,12 @@ virtual machine:
     - virt_lightning.virt_lightning
   tasks:
     - name: Create the Debian 10 VM
-      virt_lightning:
+      vm:
         distro: debian-10
         name: myvm
         state: present
 
-    - name: Refresh inventory to ensure new instaces exist in inventory
+    - name: Refresh inventory to ensure new instance exists in inventory
       meta: refresh_inventory
 
     - debug: var=hostvars.myvm
@@ -29,7 +29,7 @@ virtual machine:
       delegate_to: myvm
 
     - name: Destroy the VM
-      virt_lightning:
+      vm:
         name: myvm
         state: absent
 ```
@@ -47,7 +47,7 @@ If it's not the case, just follow the installation procedure here: https://virt-
 ## Installation
 
 ```shell
-ansible-galaxy collection install -p ~/.ansible/collections virt_lightning.virt_lightning
+ansible-galaxy collection install virt_lightning.virt_lightning
 ```
 
 You can test your installation with the two samples playbooks.
