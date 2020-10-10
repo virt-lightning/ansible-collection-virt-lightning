@@ -1,7 +1,7 @@
-namespace: "virt_lightning"
-name: "virt_lightning"
-version: "1.3.0"
-readme: "README.md"
+namespace: virt_lightning
+name: virt_lightning
+version: "1.4.0"
+readme: README.md
 authors:
     - "Gonéri Le Bouder <goneri@lebouder.net>"
 dependencies:
