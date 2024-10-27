@@ -1,7 +1,7 @@
 ---
 namespace: virt_lightning
 name: virt_lightning
-version: 1.4.0
+version: 1.4.1
 readme: README.md
 authors:
   - Gonéri Le Bouder <goneri@lebouder.net>
