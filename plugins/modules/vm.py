@@ -16,7 +16,7 @@
 
 DOCUMENTATION = '''
 ---
-module: virt_lightning
+module: vm
 short_description: A Cloud-like interface on top of a local Libvirt
 description:
     - Foo
@@ -52,6 +52,7 @@ import re
 import asyncio
 
 import libvirt
+import virt_lightning.api as api
 import virt_lightning.configuration
 import virt_lightning.virt_lightning as vl
 
@@ -75,6 +76,7 @@ def create(hv, configuration, distro, context, name, root_disk_size, **kwargs):
         "fqdn": kwargs.get("fqdn"),
         "default_nic_mode": kwargs.get("default_nic_model"),
     }
+    api.fetch(configuration, distro=distro)
     domain = hv.create_domain(name=name, distro=distro)
     hv.configure_domain(domain, user_config)
     domain.context = context
